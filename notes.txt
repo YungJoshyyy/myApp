@@ -1,0 +1,9 @@
+                <div class="form-group">
+                    <select class="form-select">
+                        <option value="nut">Nutrition</option>
+                        <option value="fit">Fitness</option>
+                        <option value="lif">Lifestyle</option>
+                    </select>
+                </div>
+
+                // ^^ add back to new goal

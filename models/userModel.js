@@ -1,11 +1,13 @@
 const nedb = require('nedb');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 class Users {
 
-    constructor(dbFilePath) {
+    constructor(dbFilePath, name) {
         if(dbFilePath){
-            this.db = new nedb({ filename: dbFilePath, autoload: true });
-            console.log('DB connected to ' + dbFilePath); 
+            this.db = new nedb({ filename: 'user.db', autoload: true });
+            console.log(name, 'connected to ' + dbFilePath); 
         } else {
             this.db = new nedb();
         }
@@ -38,8 +40,33 @@ class Users {
         });
     }
 
-    newUser(){
-        
+    newUser(username, password){
+        bcrypt.hash(password, saltRounds).then((hash) => {
+            var entry = {
+                user: username,
+                password: hash,
+                dateCreated: new Date().toISOString().split('T')[0]
+            };
+            this.db.insert(entry, (err) => {
+                if(err){
+                    console.log("Can't insert user: ", username);
+                }
+            });
+        });
+    }
+    
+    lookup(user, cb) {
+        const that = this;
+        that.db.loadDatabase();
+        that.db.find({'user':user}, (err, entries) => {
+            if(err){
+                return cb(null, null);
+            } else {
+                if(entries.length == 0){
+                    return cb(null, null);
+                } return cb (null, entries[0]);
+            }
+        });
     }
 
 

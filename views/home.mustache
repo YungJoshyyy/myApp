@@ -1,23 +1,21 @@
 <html>
 <head>
-    {{>header}}
-    <link rel="stylesheet" href="views\styles.css">
-
+    {{>Header}}
 </head>
 <body>
-
-    <nav class="font-sans flex text-center content-center sm:flex-row sm:text-left sm:justify-between bg-white shadow sm:items-baseline w-full " id="navCol">
-        <div class="page-title self-center mr-auto px-4">{{title}}</div>
-        <div class="sm:mb-0 self-center" >
-          <a href="/account" class="text-md no-underline  hover:text-blue-dark ml-2 px-1">Account</a>
-          <a href="/login" class="text-md no-underline text-grey-darker hover:text-blue-dark ml-2 px-1">Login</a>
-          <a href="/register" class="text-md no-underline text-grey-darker hover:text-blue-dark ml-2 px-1">Register</a>
+    
+    <div class="text-center d-flex mt-5 justify-content-center">
+        <div class="card shadow w-75">
+            <img src="/images/header.png" alt="welcomeHeader" class="card-img-top">
+            <div class="card-body shadow">
+                <h5 class="card-title" id="welcomeBanner">Home to a better lifestyle.</h5>
+                <a href="/about" class="btn btn-success-outline-none" id="welcomeLink">About Us</a>
+                <a href="/login" class="btn btn-success-outline-none" id="welcomeLink">Login</a>
+                <a href="/register" class="btn btn-success-outline-none" id="welcomeLink">Register</a>
+            </div>
         </div>
-    </nav>
-    
-    
-   
-
+    </div>
 
 </body>
 </html>
+

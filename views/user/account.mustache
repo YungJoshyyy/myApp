@@ -1,23 +1,164 @@
 <html>
 <head>
     {{>header}}
-    <link rel="stylesheet" href="views\styles.css">
-
 </head>
 <body>
+<div class="container-sm">
+        <h2 class="card-title text-center mt-5">Welcome, {{cardusername}} </h2>
+    <div class="row justify-content-center">
+            <div class="text-center d-flex mt-5 justify-content-center">
+                <div class="card shadow" style="width: 18rem">
+                    <img src="/images/goals.png" alt="defaultGoalPic" class="card-img-top">
+                    <div class="card-body shadow">
+                        <h5 class="card-title">Goals </h5>
+                        <p class="card-text">Goals: {{GoalsAchieved}}</p>
+                        <p class="card-text">{{#latestGoal}}New Goal: {{latestGoal}} {{/latestGoal}}</p>
+                        <a href="/goal" class="btn btn-success-outline-none">Create</a>
+                        <button type="button" class="btn btn-info-outline-none btn" data-toggle="modal" id="modalLink" data-target="#goalInfo">View</button>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center d-flex mt-5 justify-content-center">
+                <div class="card shadow" style="width: 18rem">
+                    <img src="/images/defaultpp.png" alt="defaultProfilePic" class="card-img-top">
+                    <div class="card-body shadow">
+                        <h5 class="card-title">Profile</h5>
+                        <p class="card-text">Username: {{cardusername}}</p>
+                        <p class="card-text">Account Created: {{accCreated}}</p>
+                        <a href="#" class="btn btn-success-outline-none">Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center d-flex mt-5 justify-content-center">
+                <div class="card shadow text-center" style="width: 18rem">
+                    <img src="/images/Achievements.png" alt="defaultAchievementPic" class="card-img-top">
+                    <div class="card-body shadow">
+                        <h5 class="card-title">Achievements </h5>
+                        <p class="card-text">Achieved: {{}}0</p>
+                        <p class="card-text">Latest Achievement: {{latestAchievement}}0</p>
+                        <a href="#" class="btn btn-success-outline-none">View More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center d-flex mt-5 justify-content-center">
+                <div class="card shadow text-center" style="width: 18rem">
+                    <img src="/images/info.png" alt="information" class="card-img-top">
+                    <div class="card-body shadow">
+                        <h5 class="card-title">Infomation</h5>
+                        <p class="card-text"><button type="button" class="btn btn-info-outline-none btn" data-toggle="modal" id="modalLink" data-target="#nutritionInfo">Nutrition</button></p>
+                        <p class="card-text"><button type="button" class="btn btn-info-outline-none btn" data-toggle="modal" id="modalLink" data-target="#fitnessInfo">Fitness</button></p>
+                        <p class="card-text"><button type="button" class="btn btn-info-outline-none btn" data-toggle="modal" id="modalLink" data-target="#lifeInfo">Healthy Lifestyle</button></p>
 
-    <nav class="font-sans flex text-center content-center sm:flex-row sm:text-left sm:justify-between bg-white shadow sm:items-baseline w-full " id="navCol">
-        <div class="page-title self-center mr-auto px-4">{{title}}</div>
-        <div class="sm:mb-0 self-center" >
-          <a href="/" class="text-md no-underline  hover:text-blue-dark ml-2 px-1">Home</a>
-          <a href="/login" class="text-md no-underline text-grey-darker hover:text-blue-dark ml-2 px-1">Login</a>
-          <a href="/register" class="text-md no-underline text-grey-darker hover:text-blue-dark ml-2 px-1">Register</a>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="text-center d-flex mt-5 justify-content-center">
+                <div class="card shadow text-center" style="width: 45rem">
+                    <img src="/images/headerAcc.png" alt="logout" class="card-img-top">
+                    <div class="card-body shadow">
+                        <h5 class="card-title">Home</h5>
+                        <a href="/logout" class="btn success-outline-none">Logout</a> 
+                    </div>
+                </div>
+            </div>
+            
+    </div>
+    <div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="lifeInfo" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <h4 class="modal-title">Healthy Lifestyle</h4>
+              </div>
+              <div class="modal-body">
+                <p>Living a healthy lifestyle is about making choices that support your physical and mental wellbeing. Our app helps you set goals, track your progress, and make informed choices to support your overall health.</p>
+              </div>
+              <div class="modal-footer border-0">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="modalLink">Close</button>
+              </div>
+            </div>
+            
+          </div>
         </div>
-    </nav>
-    
-    
-   
+        
+          <div class="modal fade" id="nutritionInfo" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <h4 class="modal-title">Nutrients</h4>
+              </div>
+              <div class="modal-body">
+                <p>The right Nutrition is key to achieving your health goals. Keep track of your daily intake and make informed choices to support your journey towards a healthier life.</p>
+              </div>
+              <div class="modal-footer border-0">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="modalLink" >Close</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
 
+        <div class="modal fade" id="goalInfo" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <h4 class="modal-title">Goals</h4>
+              </div>
+              <div class="modal-body">
+              {{#goals}}
+                <ul> 
+                     <div class="card">
+                        <div class="card-body">
+                        <h4 class="card-title">{{Goal}}</h4>
+                        <p class="card-text">
+                            {{Description}}
+                        </p>
+                    </div>
+                </ul>
+            {{/goals}}
+                {{^goals}}
+                No Goals yet.
+                {{/goals}}
+              </div>
+              <div class="modal-footer border-0">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="modalLink" >Close</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+      
+          <div class="modal fade" id="fitnessInfo" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <h4 class="modal-title">Fitness</h4>
+              </div>
+              <div class="modal-body">
+                <p>Fitness is an essential part of a healthy lifestyle. Track your progress, set goals, and stay motivated with our fitness tracking features</p>
+              </div>
+              <div class="modal-footer border-0">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="modalLink" >Close</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+
+
+</div>
 
 </body>
 </html>

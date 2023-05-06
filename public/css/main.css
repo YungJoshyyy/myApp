@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@700&display=swap');
+
+body {
+    font-family: 'Assistant', sans-serif;
+    background-color: #403D39;
+    color: #fffcf2;
+}
+
+#navTitle , #credLayout{
+    color: #ccc5B9;
+}
+
+a {
+    color: #ccc5B9;
+    text-decoration: none;
+}
+
+#welcomeBanner, .card-title {
+    color: #fffcf2;
+}
+
+.btn:focus, .btn:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.card a:hover, .form-group .btn:hover, .form-group a:hover, .form-group a:focus, .infolink {
+    background-color: #252422;
+    color: #EB5E28;
+    text-decoration: none;
+}
+
+.modal {
+    color: #EB5E28;
+}
+
+.modal-content {
+    background-color: #252422;
+}
+
+.modal-header {
+    color: #ccc5B9;
+}
+#modalLink:hover {
+    background-color: #252422;
+    color: #EB5E28;
+}
+
+.card p {
+    color: #ccc5B9;
+}
+
+#welcomeLink {
+    padding-left: 55px;
+    padding-right: 55px;
+    margin: 5px;
+}
+
+
+.card {
+    color: #403D39;
+    background-color: #252422;
+    border: 1px;
+    margin: .25rem;
+    float: none;
+}
+
+
+.container {
+    max-width: 95%;
+}
+
+.btn {
+    background-color: #EB5E28;
+}
+
+a:hover {
+    color: #EB5E28;
+    text-decoration: none;
+}
