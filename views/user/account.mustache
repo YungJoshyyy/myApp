@@ -187,7 +187,9 @@
               <div class="modal-header border-0">
                 <h4 class="modal-title text-end">Modify Profile</h4>
               </div>
+        
               <div class="modal-body">
+              {{#existingName}}{{existingName}}{{/existingName}}
                 <ul> 
                   <form method="post" action="/updateProfile">
                     <div class="form-group">

@@ -95,11 +95,24 @@ exports.updateProfile = (req,res)=>{
         const newUsrnme = req.body.newUsername
 
     // userdb.update(currName,newUsrnme )
+    //checks for id of user changing name
+        userdb.lookup(usrID, (err, thisUsr) => {
 
-    userdb.lookup(usrID, (err, u) => {
-        userdb.update(u, newUsrnme);
-        res.cookie("username", newUsrnme)
-        res.redirect('/account');
+            let id = thisUsr._id
+
+        //checks for other users with new name
+        userdb.lookupNewName(newUsrnme, (err, otherUsr) => {
+            console.log(`uses`, otherUsr);
+            if(otherUsr && otherUsr.length >= 1){
+                return;
+            } else {
+                userdb.update(id, newUsrnme);
+                res.cookie("username", newUsrnme)
+                res.redirect('/account');
+            }
+        })
+
+
         
 
     })

@@ -22,9 +22,8 @@ class Users {
         console.log('root inserted');
     }
 
-    update(userID, newName){
+    update(id, newName){
         const that = this 
-        const id=userID._id
 
         that.db.update( {_id:id }, { $set: { "user":newName } }, {}, (req,res) => {
             that.db.loadDatabase()
@@ -59,6 +58,7 @@ class Users {
                 dateCreated: new Date().toISOString().split('T')[0]
             };
             this.db.insert(entry, (err) => {
+                this.db.loadDatabase();
                 if(err){
                     console.log("Can't insert user: ", username);
                 }
@@ -77,6 +77,17 @@ class Users {
                     return cb(null, null);
                 } return cb (null, entries[0]);
             }
+        });
+    }
+
+    lookupNewName(username, cb) {
+        const that = this;
+        that.db.loadDatabase();
+        that.db.find({'user':username}, (err, users) => {
+            if(err){
+                return cb(err);
+            }
+                return cb(null, users);
         });
     }
 
