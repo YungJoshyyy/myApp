@@ -153,7 +153,7 @@ exports.post_reg = (req, res) => {
     const pass = req.body.pass;
 
     if(!user || !pass){
-        res.status(401)
+        res.send(500);
         //res.render('500');
         return;
     }
@@ -161,7 +161,7 @@ exports.post_reg = (req, res) => {
     userdb.lookup(user, (err, u) => {
 
         if(u) {
-            res.status(401)
+            res.send(500)
             return;
         }
 
