@@ -41,11 +41,25 @@ class Goals {
 
 
     completeGoal(goalID) {
+        let currDate = new Date().toISOString().split('T')[0]
         const that = this;
-        that.db.update({ _id: goalID }, { $set: { Achieved:true } }, {}, (req,res) => {
-            console.log(`Updated, `,goalID)
+        that.db.update({ _id: goalID }, { $set: { Achieved:true, dateAchieved:currDate } }, {}, (req,res) => {
         });
     }
+
+    removeGoalComplete(goalID) {
+        let currDate = new Date().toISOString().split('T')[0]
+        const that = this;
+        that.db.update({ _id: goalID }, { $set: { Achieved:false, dateAchieved:currDate } }, {}, (req,res) => {
+        });
+    }
+
+    delGoal(goalID) {
+        const that = this;
+        that.db.remove({ _id: goalID }, {}, (req,res) => {
+        });
+    }
+
 
     newGoal(goalName, goalDesc, userID){
             var entry = {

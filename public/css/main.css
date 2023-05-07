@@ -24,6 +24,10 @@ a {
     box-shadow: none;
 }
 
+.modal-close {
+    z-index: 1055;
+}
+
 .card a:hover, .form-group .btn:hover, .form-group a:hover, .form-group a:focus, .infolink {
     background-color: #252422;
     color: #EB5E28;

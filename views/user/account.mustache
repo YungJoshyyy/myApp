@@ -12,7 +12,7 @@
                     <div class="card-body shadow">
                         <h5 class="card-title">Goals </h5>
                         <p class="card-text">Goals:  {{GoalSet}}</p>
-                        <p class="card-text">{{#latestGoal}}New Goal: {{latestGoal}} {{/latestGoal}}</p>
+                        <p class="card-text">{{#newestGoal}} New Goal: {{newestGoal}} {{/newestGoal}}</p>
                         <a href="/goal" class="btn btn-success-outline-none">Create</a>
                         <button type="button" class="btn btn-info-outline-none btn" data-toggle="modal" id="modalLink" data-target="#goalInfo">View</button>
                     </div>
@@ -25,17 +25,17 @@
                         <h5 class="card-title">Profile</h5>
                         <p class="card-text">Username: {{cardusername}}</p>
                         <p class="card-text">Account Created: {{accCreated}}</p>
-                        <a href="#" class="btn btn-success-outline-none">Profile</a>
+                        <button type="button" class="btn btn-info-outline-none btn" data-toggle="modal" id="modalLink" data-target="#updateProfile">Update</button>
                     </div>
                 </div>
             </div>
             <div class="text-center d-flex mt-5 justify-content-center">
                 <div class="card shadow text-center" style="width: 18rem">
-                    <img src="/images/Achievements.png" alt="defaultAchievementPic" class="card-img-top">
+                    <img src="/images/tester.png" alt="defaultAchievementPic" class="card-img-top">
                     <div class="card-body shadow">
                         <h5 class="card-title">Achievements </h5>
                         <p class="card-text">Achieved: {{GoalsCompleted}}</p>
-                        <p class="card-text">Latest Achievement: {{latestAchievement}}</p>
+                        <p class="card-text">{{#newestAch}}Newest Achievement: {{newestAch}} {{/newestAch}}</p>
                         <button type="button" class="btn btn-info-outline-none btn" data-toggle="modal" id="modalLink" data-target="#achievementModal">View</button>
                     </div>
                 </div>
@@ -116,12 +116,14 @@
                 <ul> 
                 
                 <form method="post" action="/updateGoal">
+                  <input type="hidden" name="goalTitle" value="{{Goal}}">
                      <div class="card shadow">
                         <div class="card-body">
                         <h4 class="card-title">{{Goal}}</h4>
                         <p class="card-text">Description: {{Description}}</p>
-                        <p class="card-text">Completed status?  {{Achieved}}</p>
+                        <p class="card-text">Completed?  {{^goals.Achieved}} No {{/goals.Achieved}}</p>
                         <button type="submit" name="goalID" value="{{_id}}" id="modalLink" class="btn btn-primary-outline-none btn-sm mb-2">Mark as Achieved</button>
+                        <button type="submit" name="deleteID" value="{{_id}}" id="modalLink" class="btn btn-primary-outline-none btn-sm mb-2">Delete</button>
                         <footer class="blockquote-footer" id="goalID">Goal ID: {{_id}} | Date Created: {{dateCreated}}</footer>
                     </div>
                 </form>
@@ -150,13 +152,19 @@
               <div class="modal-body">
               {{#achievements}}
                 <ul> 
+
+                  <form method="post" action="/updateGoalRC">
                      <div class="card shadow">
                         <div class="card-body">
+                        <input type="hidden" name="achievementTitle" id="achievementTitle" value="{{goal}}">
                         <h4 class="card-title">{{Goal}}</h4>
                         <p class="card-text">Description: {{Description}}</p>
-                        <p class="card-text">Completed status? {{Achieved}}</p>
-                        <footer class="blockquote-footer">Achievement ID: {{_id}}</footer>
+                        <p class="card-text">Completed? Yes</p>
+                        <button type="submit" name="achievementID" value="{{_id}}" id="modalLink" class="btn btn-primary-outline-none btn-sm mb-2">Remove Completion Status</button>
+                        <button type="submit" name="deleteID" value="{{_id}}" id="modalLink" class="btn btn-primary-outline-none btn-sm mb-2">Delete</button>
+                        <footer class="blockquote-footer" id="goalID">Goal ID: {{_id}} | Date Created: {{dateCreated}}</footer>
                     </div>
+                </form>
                 </ul>
             {{/achievements}}
                 {{^achievements}}
@@ -171,7 +179,39 @@
           </div>
         </div>
 
-      
+        <div class="modal fade" id="updateProfile" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content shadow">
+              <div class="modal-header border-0">
+                <h4 class="modal-title text-end">Modify Profile</h4>
+              </div>
+              <div class="modal-body">
+                <ul> 
+                  <form method="post" action="/updateProfile">
+                    <div class="form-group">
+                    <label for="username" id="credLayout">User Name</label>
+                    <input type="text" class="form-control" id="username" name="newUsername" placeholder="New username" required>
+                    </div>
+                    <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary-outline-none">Update</button>
+                    <p>!!WARNING!! after changing password your will no longer be able to log in with your previous user name</p></p>
+                    </div>
+                    <div>
+                    </div>
+                    </form>
+                    </ul>
+              </div>
+              <div class="modal-footer border-0">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="modalLink" >Return</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+        
           <div class="modal fade" id="fitnessInfo" role="dialog">
           <div class="modal-dialog">
           

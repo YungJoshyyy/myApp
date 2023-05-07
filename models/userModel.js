@@ -22,6 +22,17 @@ class Users {
         console.log('root inserted');
     }
 
+    update(userID, newName){
+        const that = this 
+        const id=userID._id
+
+        that.db.update( {_id:id }, { $set: { "user":newName } }, {}, (req,res) => {
+            that.db.loadDatabase()
+            console.log(`User id: ` + id + ` updated to ` + newName);
+        });
+    
+    }
+
     getAllEntries(){
         return new Promise((resolve, reject) => {
             //use the find() function of the database to get the data,
