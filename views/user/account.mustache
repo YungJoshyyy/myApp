@@ -11,7 +11,7 @@
                     <img src="/images/goals.png" alt="defaultGoalPic" class="card-img-top">
                     <div class="card-body shadow">
                         <h5 class="card-title">Goals </h5>
-                        <p class="card-text">Goals: {{GoalsAchieved}}</p>
+                        <p class="card-text">Goals:  {{GoalSet}}</p>
                         <p class="card-text">{{#latestGoal}}New Goal: {{latestGoal}} {{/latestGoal}}</p>
                         <a href="/goal" class="btn btn-success-outline-none">Create</a>
                         <button type="button" class="btn btn-info-outline-none btn" data-toggle="modal" id="modalLink" data-target="#goalInfo">View</button>
@@ -34,9 +34,9 @@
                     <img src="/images/Achievements.png" alt="defaultAchievementPic" class="card-img-top">
                     <div class="card-body shadow">
                         <h5 class="card-title">Achievements </h5>
-                        <p class="card-text">Achieved: {{}}0</p>
-                        <p class="card-text">Latest Achievement: {{latestAchievement}}0</p>
-                        <a href="#" class="btn btn-success-outline-none">View More</a>
+                        <p class="card-text">Achieved: {{GoalsCompleted}}</p>
+                        <p class="card-text">Latest Achievement: {{latestAchievement}}</p>
+                        <button type="button" class="btn btn-info-outline-none btn" data-toggle="modal" id="modalLink" data-target="#achievementModal">View</button>
                     </div>
                 </div>
             </div>
@@ -107,25 +107,61 @@
           <div class="modal-dialog">
           
             <!-- Modal content-->
-            <div class="modal-content">
+            <div class="modal-content shadow">
               <div class="modal-header border-0">
                 <h4 class="modal-title">Goals</h4>
               </div>
               <div class="modal-body">
               {{#goals}}
                 <ul> 
-                     <div class="card">
+                
+                <form method="post" action="/updateGoal">
+                     <div class="card shadow">
                         <div class="card-body">
                         <h4 class="card-title">{{Goal}}</h4>
-                        <p class="card-text">
-                            {{Description}}
-                        </p>
+                        <p class="card-text">Description: {{Description}}</p>
+                        <p class="card-text">Completed status?  {{Achieved}}</p>
+                        <button type="submit" name="goalID" value="{{_id}}" id="modalLink" class="btn btn-primary-outline-none btn-sm mb-2">Mark as Achieved</button>
+                        <footer class="blockquote-footer" id="goalID">Goal ID: {{_id}} | Date Created: {{dateCreated}}</footer>
                     </div>
+                </form>
                 </ul>
             {{/goals}}
                 {{^goals}}
                 No Goals yet.
                 {{/goals}}
+              </div>
+              <div class="modal-footer border-0">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="modalLink" >Close</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+        <div class="modal fade" id="achievementModal" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content shadow">
+              <div class="modal-header border-0">
+                <h4 class="modal-title">Achievements</h4>
+              </div>
+              <div class="modal-body">
+              {{#achievements}}
+                <ul> 
+                     <div class="card shadow">
+                        <div class="card-body">
+                        <h4 class="card-title">{{Goal}}</h4>
+                        <p class="card-text">Description: {{Description}}</p>
+                        <p class="card-text">Completed status? {{Achieved}}</p>
+                        <footer class="blockquote-footer">Achievement ID: {{_id}}</footer>
+                    </div>
+                </ul>
+            {{/achievements}}
+                {{^achievements}}
+                No Goals Completed Yet.
+                {{/achievements}}
               </div>
               <div class="modal-footer border-0">
                 <button type="button" class="btn btn-default" data-dismiss="modal" id="modalLink" >Close</button>

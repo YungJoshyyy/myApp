@@ -40,12 +40,21 @@ class Goals {
         }
 
 
+    completeGoal(goalID) {
+        const that = this;
+        that.db.update({ _id: goalID }, { $set: { Achieved:true } }, {}, (req,res) => {
+            console.log(`Updated, `,goalID)
+        });
+    }
+
     newGoal(goalName, goalDesc, userID){
             var entry = {
                 Goal: goalName,
                 Description: goalDesc,
                 Achieved: false,
-                userID: userID
+                userID: userID,
+                dateAchieved: null,
+                dateCreated: new Date().toISOString().split('T')[0]
             };
 
             this.db.insert(entry, (err) => {
@@ -55,17 +64,27 @@ class Goals {
             });
     }
 
-    getEntriesByUser(user) {
+    getGoalsByUser(user) {
         return new Promise((resolve, reject) => {
+            this.db.loadDatabase()
             this.db.find({ 'userID': user }, function(err, entries) {
             if (err) {
                 reject(err);
-            } else {
+            } else {                
                 resolve(entries);
-        }
-    })
-})
-}
+                }
+            });
+        });
+    }   
+
+    getUserAchievements(entities) {
+        return new Promise((resolve, reject) => {
+            const achievements = entities.filter((entry) => {
+                return entry.Achieved === true;
+            });
+            resolve(achievements);
+        });
+    }   
 
 
 }

@@ -17,6 +17,7 @@ router.get('/login', controller.loginpage);
 router.post('/login', login, controller.handle_login);
 
 router.get('/logout', verify, controller.logout);
+router.post('/updateGoal', verify, controller.completeGoal);
 
 router.get('/goal', verify, controller.cgp);
 router.post('/goal', verify, controller.post_goal);

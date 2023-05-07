@@ -37,12 +37,14 @@ exports.post_goal = (req, res) => {
     var achieveDefault = false;
     let usrnme = req.cookies.username
     let dateCookie = req.cookies.accountDate
-    res.cookie('rg', gn);
+    
 
     goaldb.newGoal(gn, gd, usrnme);
+    res.cookie('rg', gn);
+
     console.log(gd, "sucessfully added for user ", usrnme);
 
-        res.redirect('/account');
+    res.redirect('/account');
 
 }
 exports.cgp = (req, res) => {
@@ -51,22 +53,89 @@ exports.cgp = (req, res) => {
     });
 }
 
+exports.completeGoal = (req,res)=>{
+    const goalID = req.body.goalID
+
+    console.log(`GOALID IS `, goalID)
+
+    goaldb.completeGoal(goalID);
+    res.redirect('/account');
+}
+
+
+
 exports.accountpage = function (req, res) {
     let usrnme = req.cookies.username
     let dateCookie = req.cookies.accountDate
     let recentGoal = req.cookies.rg
-    goaldb.getEntriesByUser(usrnme).then((entries) => {
 
-        res.render("user/account", {
-            title: 'Account',
-            cardusername: usrnme,
-            accCreated: dateCookie,
-            goals: entries,
-            GoalsAchieved: entries.length,
-            latestGoal: recentGoal
+    goaldb.getGoalsByUser(usrnme).then((entries, filteredGoal) => {
+        return goaldb.getUserAchievements(entries).then((achievements) => {
+            return {
+                entries: entries,
+                achievements: achievements
+            };
+        });
+        }).then((data) => {
+
+            console.log(`entries-`, data.entries);
+            console.log(`achievments-`, data.achievements);
+            const notAchieved = data.entries.filter((entry) => entry.Achieved === false);
+            const Achieved = data.achievements.filter((entry) => entry.Achieved);
+
+            res.render("user/account", {
+                title: 'Account',
+                cardusername: usrnme,
+                accCreated: dateCookie,
+                goals: notAchieved,
+                achievements: data.achievements,
+                GoalSet: notAchieved.length,
+                GoalsAchieved: data.goalsAchieved,
+                latestGoal: recentGoal,
+                GoalsCompleted: Achieved.length
+            })
         })
+}
+
+/*
+res.send(entries)
+
+res.render("user/account", {
+    title: 'Account',
+    cardusername: usrnme,
+    accCreated: dateCookie,
+    goals: entries,
+    GoalSet: entries.length,
+    latestGoal: recentGoal,
+    GoalsCompleted: achievements.length
+
+/* Trying to get achieved goals
+exports.accountpage = function (req, res) {
+    let usrnme = req.cookies.username
+    let dateCookie = req.cookies.accountDate
+    let recentGoal = req.cookies.rg
+
+    goaldb.getGoalsByUser(usrnme).then((entries) => {
+
+        let entryLength = entries.length
+
+        goaldb.getAchievementsByUser(entries).then((achievements) => {
+            console.log("ENTRIES+", entries)
+            res.render("user/account", {
+                title: 'Account',
+                cardusername: usrnme,
+                accCreated: dateCookie,
+                goals: entries,
+                GoalsAchieved: entries.length,
+                latestGoal: recentGoal,
+                GoalsCompleted: '10',
+            })
+
+        })
+
     });
-  };
+*/
+
 
 
 exports.handle_login = (req, res) => {
@@ -97,7 +166,7 @@ exports.post_reg = (req, res) => {
 }
 
 exports.logout = function (req, res) {
-    res.clearCookie("jwt").clearCookie("username").clearCookie("rg").status(200).redirect("/");
+    res.clearCookie("jwt").clearCookie("username").clearCookie("accountDate").clearCookie("rg").status(200).redirect("/");
 };
 
 

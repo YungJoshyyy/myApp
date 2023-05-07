@@ -1,17 +1,2 @@
-{"Goal":"Harry","Description":"12345","Achieved":false,"userID":"John","_id":"0pnkxpDP76WC0vR1"}
-{"Goal":"Second Goal","Description":"This is the description","Achieved":false,"userID":"BBBB","_id":"1A14Q5V4sk9Xda3Q"}
-{"Goal":"Barry","Description":"This is the description","Achieved":false,"userID":"root","_id":"1RFXxfR1aBlxlsxi"}
-{"Goal":"First Goal","Description":"A wee description","Achieved":false,"userID":"root","_id":"7ClArIKYvF4S1eWN"}
-{"Goal":"Fly a plane","Description":"Aim to fly a plain","Achieved":false,"userID":"root123","_id":"7U0HubwFgvBUv3ZF"}
-{"Goal":"First Goal","Description":"A short description","Achieved":false,"userID":"BBBB","_id":"EOZJ1MWbU9yZEQy3"}
-{"Goal":"First Goal","Description":"1234","Achieved":false,"userID":"John","_id":"NizrlN5Or1vUFtSL"}
-{"Goal":"First Goal","Description":"Ride a bike","Achieved":false,"userID":"root123","_id":"R1AJEeNHeZ2LPoeI"}
-{"Goal":"batnan","Description":"1234","Achieved":false,"userID":"root123","_id":"Yknf25Jn7snFsPHM"}
-{"Goal":"Second Goal","Description":"123","Achieved":false,"userID":"root","_id":"as0LHLx0N24Z94pE"}
-{"Goal":"First Goal","Description":"A wee description","Achieved":false,"userID":"root","_id":"bg8w9eujSaYsFmuM"}
-{"Goal":"Harry","Description":"12345","Achieved":false,"userID":"John","_id":"dPABq7gISpddnWVT"}
-{"Goal":"Harry","Description":"12345","Achieved":false,"userID":"John","_id":"e8pVsXKYzxIhSEQw"}
-{"Goal":"Second Goal","Description":"This is the description","Achieved":false,"userID":"John","_id":"kJXQHMhlHvrlpdXd"}
-{"Goal":"Harry","Description":"12345","Achieved":false,"userID":"John","_id":"kgPEYtOoA1At49zP"}
-{"Goal":"First Goal","Description":"A short description","Achieved":false,"userID":"John","_id":"s87J9ELpJkBzQgom"}
-{"Goal":"First Goal","Description":"A short description","Achieved":false,"userID":"josh","_id":"pf0rD9gYZjRYA6AP"}
+{"Goal":"First Goal","Description":"A short description","Achieved":true,"userID":"Josh","dateAchieved":null,"dateCreated":"2023-05-07","_id":"V0pjEQJ8JbZB4Cv2"}
+{"Goal":"Create","Description":"Basket","Achieved":true,"userID":"Josh","dateAchieved":null,"dateCreated":"2023-05-07","_id":"lAmWsmgjojXrFtR8"}
