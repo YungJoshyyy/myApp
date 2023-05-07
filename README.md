@@ -3,7 +3,7 @@ Assuming you have git and node installed, first clone the repository. Open a com
 In this application, users have the ability to:
 - Register and log in, 
 - Create, track and delete goals
-- Update username if not already taken by another user
+- Update username
 - view information about nutrition, fitness and healthy lifestyle
 - Ability to view achievements (goals that have been reached)
 

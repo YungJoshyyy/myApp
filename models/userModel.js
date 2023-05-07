@@ -58,7 +58,6 @@ class Users {
                 dateCreated: new Date().toISOString().split('T')[0]
             };
             this.db.insert(entry, (err) => {
-                this.db.loadDatabase();
                 if(err){
                     console.log("Can't insert user: ", username);
                 }

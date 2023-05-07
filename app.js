@@ -9,10 +9,10 @@ const port = process.env.PORT || 3000
 app.use(express.urlencoded({extended: true}))
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
-const public= path.join(__dirname, '/public');
 
+
+const public= path.join(__dirname, '/public');
 app.use(express.static(public));
-app.use('/css', express.static(public));
 
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
