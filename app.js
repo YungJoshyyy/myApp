@@ -17,7 +17,6 @@ app.use('/css', express.static(public));
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
 
-const router = require('./routes/healthappRoutes');
 app.use('/', router);
 
 app.listen(port || 3000, () => {
