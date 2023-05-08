@@ -12,14 +12,14 @@ app.use(cookieParser());
 
 
 const public= path.join(__dirname, '/public');
-app.use(express.static(public));
+app.use(express.static('/views'));
 
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
 
 app.use('/', router);
 
-app.listen(port || 3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("Server Started on port", 3000);
 })
 
